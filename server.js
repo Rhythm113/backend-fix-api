@@ -118,7 +118,8 @@ app.get('/comments/:id', cors(corsOptions), (req, res) => {
 });
 
 app.post('/comments', cors(corsOptions), (req, res) => {
-    const token = req.cookies.token;
+       const authHeadero = req.headers['authorization']
+  const token = authHeadero && authHeadero.split(' ')[1]
     if(!token) {
         res.sendStatus(401);
         return;
