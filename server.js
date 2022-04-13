@@ -63,7 +63,8 @@ app.post('/register', cors(corsOptions),(req, res) => {
 });
 
 app.get('/user', cors(corsOptions), (req, res) => {
-   const token = req.cookies.token;
+const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
 
    getUserFromToken(token)
        .then(user => {
